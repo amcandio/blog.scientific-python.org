@@ -124,6 +124,10 @@ def searchsorted_py_np_fixed(a, xs):
     return hi
 ```
 
+Removing the `active` tracker makes it up to 2x faster.
+
+![](images/figure3-fs8.png)
+
 This implementation can already be found in the Python ecosystem. Note the similarity to [JAX’s scan-based implementation](https://github.com/jax-ml/jax/blob/a6e4a8b95a731269bdf23e5b3e30da2f8494bb28/jax/_src/numpy/hijax.py#L330)
 
 ```python
@@ -140,10 +144,6 @@ def body_fun(state, _):
 n_levels = int(np.ceil(np.log2(n + 1)))
 ...
 ```
-
-And the numbers speak for themselves.
-
-![](images/figure3-fs8.png)
 
 ### Can NumPy beat NumPy?
 
