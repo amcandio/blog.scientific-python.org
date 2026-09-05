@@ -48,7 +48,7 @@ def searchsorted_py(a, xs):
 
 ![](images/figure1-fs8.png)
 
-Running time grows logarithmically as the input size grows (note the log scale of X-axis).
+Running time per query grows logarithmically as the input size grows (note the log scale of X-axis).
 
 For benchmarking, we generated two random arrays of uniformly distributed `np.int32` integers. The elements being searched had a fixed length of 10,000. Each benchmark was repeated 50 times, and we report the minimum execution time.
 
@@ -330,11 +330,11 @@ Note that we optimized this implementation by unrolling the first iteration of t
 
 This implementation was ported directly into NumPy as part of PR [#30517](https://github.com/numpy/numpy/pull/30517), which was included as part of [2.5 release](https://numpy.org/devdocs/release/2.5.0-notes.html#improved-performance-of-numpy-searchsorted).
 
-Now let's compare both 2.4 and 2.5 releases:
+Now let's do a final comparison between both 2.4 and 2.5 releases and our vectorized Python implementation:
 
 ![](images/figure7-fs8.png)
 
-Up to 25x faster!
+The native 2.5 version is slightly faster than the vectorized Python one, which is up to 25 times faster than 2.4!
 
 ### Conclusion
 
