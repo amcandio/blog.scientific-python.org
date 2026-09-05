@@ -9,7 +9,7 @@ displayInList: true
 authors: ["Alejandro Candioti <amcandio>"]
 resources:
   - name: featuredImage
-    src: "images/figure7.png"
+    src: "images/figure7-fs8.png"
     params:
       showOnTop: false
 ---
@@ -102,7 +102,7 @@ Because the queries can converge at different times, we need to keep track of wh
 
 ### Making it consistent
 
-The important observation is that binary search does not actually need to terminate independently for each key. We can tweak each iteration update in a way that, once a search has converged, subsequent iterations can leave its interval unchanged. 
+The important observation is that binary search does not actually need to terminate independently for each key. We can tweak each iteration update in a way that, once a search has converged, subsequent iterations can leave its interval unchanged.
 
 ```python
 def searchsorted_py_np_fixed(a, xs):
@@ -127,14 +127,18 @@ def searchsorted_py_np_fixed(a, xs):
 This implementation can already be found in the Python ecosystem. Note the similarity to [JAX’s scan-based implementation](https://github.com/jax-ml/jax/blob/a6e4a8b95a731269bdf23e5b3e30da2f8494bb28/jax/_src/numpy/hijax.py#L330)
 
 ```python
-  ...
-  def body_fun(state, _):
+...
+
+
+def body_fun(state, _):
     low, high = state
     mid = low + (high - low) // 2  # use this form to avoid overflow
     go_left = op(query, sorted_arr[mid])
     return (lax.select(go_left, low, mid), lax.select(go_left, mid, high)), ()
-  n_levels = int(np.ceil(np.log2(n + 1)))
-  ...
+
+
+n_levels = int(np.ceil(np.log2(n + 1)))
+...
 ```
 
 And the numbers speak for themselves.
@@ -272,7 +276,7 @@ binsearch(const char *arr, const char *key, char *ret, npy_intp arr_len,
 
     We unroll the first iteration for the following reasons:
         1. ret is not initialized with the bases, so we save |keys| writes
-        by not having to intialize it with 0s.
+        by not having to initialize it with 0s.
         2. By assuming the initial base for every key is 0, we also save
         |keys| reads.
         3. In the first iteration, all elements are compared against the
@@ -284,7 +288,7 @@ binsearch(const char *arr, const char *key, char *ret, npy_intp arr_len,
     */
     npy_intp interval_length = arr_len;
     npy_intp half = interval_length >> 1;
-    interval_length -= half; // length -> ceil(length / 2) 
+    interval_length -= half; // length -> ceil(length / 2)
 
     npy_intp base = 0;
     const T mid_val = *(const T *)(arr + (base + half) * arr_str);
@@ -306,10 +310,10 @@ binsearch(const char *arr, const char *key, char *ret, npy_intp arr_len,
         interval_length -= half;
 
         for (npy_intp i = 0; i < key_len; ++i) {
-            npy_intp &base = *(npy_intp *)(ret + i * ret_str); 
+            npy_intp &base = *(npy_intp *)(ret + i * ret_str);
             const T mid_val = *(const T *)(arr + (base + half) * arr_str);
             const T key_val = *(const T *)(key + i * key_str);
-            base += cmp(mid_val, key_val) * half; 
+            base += cmp(mid_val, key_val) * half;
         }
     }
 
