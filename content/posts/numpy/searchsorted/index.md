@@ -334,7 +334,7 @@ Now let's do a final comparison between both 2.4 and 2.5 releases and our vector
 
 ![](images/figure7-fs8.png)
 
-The native 2.5 version is slightly faster than the vectorized Python one, which is up to 25 times faster than 2.4!
+The native 2.5 version is slightly faster than the vectorized Python one and up to 25 times faster than 2.4 release!
 
 ### Conclusion
 
