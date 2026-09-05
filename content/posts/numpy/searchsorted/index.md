@@ -332,7 +332,7 @@ This implementation was ported directly into NumPy as part of PR [#30517](https:
 
 Now let's compare both 2.4 and 2.5 releases:
 
-![](images/figure7.png)
+![](images/figure7-fs8.png)
 
 Up to 25x faster!
 
