@@ -4,7 +4,7 @@ description: "How vectorizing independent binary searches and reducing per-query
 summary: "We explore how to speed up binary search by batching independent searches with NumPy's vectorized operations. We then reformulate the algorithm so all searches progress together with only O(1) extra memory, port it to C++, and achieve up to a 25× speedup over NumPy's previous implementation."
 date: 2026-09-04
 draft: false
-tags: ["numpy", "performance", "binary-search", "searchsorted", "optimization"]
+tags: ["numpy", "performance", "binary-search", "searchsorted"]
 displayInList: true
 authors: ["Alejandro Candioti <amcandio>"]
 resources:
