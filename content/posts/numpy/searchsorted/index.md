@@ -151,7 +151,7 @@ Let’s compare the performance of this vectorized implementation with NumPy’s
 
 ![](images/figure4-fs8.png)
 
-We can see that our vectorized Python implementation can be faster than the native one for inputs with multiple keys. To understand why, let's take a look at `NumPy 2.4` implementation:
+We can see that our vectorized Python implementation can be orders of magnitude faster than the native one for inputs with several keys. To understand why, let's take a look at `NumPy 2.4` implementation:
 
 ```cpp
 template <class Tag, side_t side>
